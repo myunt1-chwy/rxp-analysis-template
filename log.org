@@ -1,0 +1,9 @@
+* Interactive project setup
+  - Accepted by the user and committed as cb76a69
+    (feat: add interactive project setup).
+  - Added first-run metadata prompts, Python 3.12 environment bootstrap,
+    dependency synchronization, documentation, and generated-output ignores.
+  - Included the requested runtime dependencies and pytest>=9.1.1 for development.
+  - Verified seven tests, fresh default/custom setup, and no-input repeat runs.
+  - Dependency synchronization succeeded; uv warned that Snowflake connector
+    5.0.0 lacks the secure-local-storage extra. Requested constraints preserved.
