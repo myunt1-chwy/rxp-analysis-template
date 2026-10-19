@@ -16,3 +16,14 @@
     that resolved snowflake-connector-python 5.0.0 lacks secure-local-storage;
     the requested dependency constraint was preserved.
   - Implementation verified and accepted; user approved committing the changes.
+* DONE Add Mermaid diagram skill
+  - Include PyYAML as a runtime dependency and in setup defaults for validation.
+  - Add a discoverable skill and standard-library Python render helper using
+    minlag/mermaid-cli:latest, with transparent PNG output by default.
+  - Retain Mermaid source under outputs/diagrams; support explicit SVG/PDF.
+  - Error on missing Docker or inaccessible daemon without installing/starting it.
+  - Validate metadata, error paths, paths with spaces, and a real Docker render.
+  - Verified: skill validator passed; 13 tests and 7 subtests passed; Docker
+    produced a visually inspected transparent PNG using paths with spaces.
+  - PyYAML resolved to 6.0.3; uv.lock updated. User accepted and approved commit.
+  - Stop for review and commit approval; log completion after acceptance and commit.
