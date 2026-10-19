@@ -1,0 +1,18 @@
+* DONE Add interactive make setup
+  - Prompt on first run for project name (folder default) and description.
+  - Generate pyproject.toml with exact requested dependencies, version 0.1.0,
+    README.md, and Python >=3.12; preserve configuration on repeat runs.
+  - Bootstrap Python 3.12 with uv, run setup through .venv, and sync dependencies.
+  - Validate names, escape TOML strings, and handle interrupted prompts.
+  - Add README, HOWTO, and ignores; preserve existing AGENTS.md changes.
+  - Verify defaults, custom metadata, escaping, invalid names, interruption,
+    repeat runs, and real dependency synchronization.
+  - Use the ten runtime dependencies supplied by the user, preserving all
+    minimum versions; include pytest>=9.1.1 in the development dependency group.
+  - Stop for review and commit approval; update log.org after acceptance and commit.
+  - Verification: seven unit tests passed; real first-run defaults and custom
+    metadata plus no-input repeat runs passed in fresh temporary directories.
+  - Dependencies synchronized successfully and uv.lock was generated. uv warned
+    that resolved snowflake-connector-python 5.0.0 lacks secure-local-storage;
+    the requested dependency constraint was preserved.
+  - Implementation verified and accepted; user approved committing the changes.

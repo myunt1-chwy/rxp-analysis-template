@@ -26,6 +26,7 @@
 - Any code under src/ignore should be ignored from consideration. It
   can be committed but that is a code playground and the code may not
   be always correct
+- HOWTO.md should contain how to run the make targets.
 ## Preferences
 - For charts, use Altair in Python and export PNGs with transparent backgrounds by default.
 - For diagrams use mermaid and use transparent backgrounds and export PNG by default.
