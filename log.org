@@ -7,3 +7,11 @@
   - Verified seven tests, fresh default/custom setup, and no-input repeat runs.
   - Dependency synchronization succeeded; uv warned that Snowflake connector
     5.0.0 lacks the secure-local-storage extra. Requested constraints preserved.
+* Mermaid diagram skill
+  - Accepted by the user and committed as a8539c1
+    (feat: add Docker Mermaid diagram skill).
+  - Added the discoverable skill and Docker render helper with transparent PNG
+    defaults, SVG/PDF support, prerequisite checks, and preserved output on failure.
+  - Added PyYAML to runtime dependencies and setup defaults; updated uv.lock.
+  - Verified skill metadata, 13 tests and 7 subtests, and a visually inspected
+    transparent PNG rendered with Docker using paths containing spaces.
