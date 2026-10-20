@@ -37,3 +37,20 @@
     and uv.lock, and repeat make setup preserved configuration without prompting.
   - Five tracked Python cache files removed from the index; local copies retained.
   - Implementation verified and accepted; user approved committing the changes.
+* DONE Add make setup-mattpocock-skills
+  - Install all mattpocock/skills locally for Codex using npx skills@latest.
+  - Add an npx prerequisite check and document the target in HOWTO.md.
+  - Run the target, verify installed skills and existing skill preservation.
+  - Stop for review and commit approval; log completion after acceptance and commit.
+  - Verified: target installed 38 skills with matching skills-lock.json entries;
+    existing RxP and Mermaid skills unchanged; missing-npx error and diff check passed.
+  - Implementation verified and accepted; user approved committing the changes.
+* DONE Add make uninstall-mattpocock-skills
+  - Select installed skills by mattpocock/skills source in skills-lock.json.
+  - Use the skills CLI to remove only those project-local skills and agent links.
+  - Document uninstall and reinstall; verify in a temporary copy, leaving this
+    repository's installed skills available.
+  - Stop for review and commit approval; log completion after acceptance and commit.
+  - Verified: temporary-copy uninstall removed 38 skills, preserved unrelated
+    skills and lock entries, and handled repeat runs, missing locks, and invalid
+    inputs. Working repository skills remain installed; user accepted and approved commit.

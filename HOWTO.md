@@ -39,3 +39,36 @@ To run the setup behavior checks after setup:
 ```sh
 .venv/bin/python -m unittest discover -s tests
 ```
+
+## Matt Pocock skills
+
+With Node.js and npm (which provides `npx`) installed, run:
+
+```sh
+make setup-mattpocock-skills
+```
+
+This runs `npx skills@latest add mattpocock/skills` with flags to install all
+skills for Codex without prompts, locally under `.agents/skills/`. It requires
+internet access and does not depend on the Python environment. The CLI records
+installed sources in `skills-lock.json`; keep that file and the installed skills
+in version control. Rerunning the target fetches the latest upstream skills and
+may overwrite local edits to those skills.
+
+To uninstall this collection:
+
+```sh
+make uninstall-mattpocock-skills
+```
+
+This selects only entries whose source is `mattpocock/skills` in
+`skills-lock.json`, then uses the CLI to remove their shared files and agent
+links in this project and update the lockfile. Other skills and global
+installations are preserved. Missing lockfiles or no
+matching entries produce a successful no-op; invalid lockfiles report an error.
+Node.js, npm, and internet access for `npx skills@latest` are required.
+Uninstalling removes local edits to these skills. Run the setup target to
+install them again.
+
+See the [skills CLI reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md)
+for installation options.
