@@ -24,3 +24,13 @@
   - Untracked five Python cache files while retaining local copies.
   - Verified 18 unit tests, fresh-copy initialization and lockfile metadata,
     repeat setup without prompts, and Git whitespace checks.
+* Matt Pocock skills installation and removal
+  - Accepted by the user and committed as 3416464
+    (feat: add Matt Pocock skills install and uninstall targets).
+  - Added make setup-mattpocock-skills and make uninstall-mattpocock-skills,
+    prerequisite checks, HOWTO instructions, 38 installed skills, and lockfile.
+  - Uninstall selects only mattpocock/skills entries and removes project-local
+    files and agent links while preserving unrelated skills and global installs.
+  - Verified installation, missing-npx handling, and temporary-copy uninstall,
+    including unrelated lock entries, repeat runs, missing locks, and invalid inputs.
+  - Working repository retains all 38 installed skills.
