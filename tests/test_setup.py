@@ -49,6 +49,7 @@ class SetupTests(unittest.TestCase):
             "jinja2>=3.1.6",
             "pandas>=3.0.5",
             "pyarrow>=25.0.1",
+            "pyyaml",
             "scipy>=1.18.1",
             "snowflake-connector-python[secure-local-storage]>=4.7.5",
             "sqlparse>=0.6.0",
