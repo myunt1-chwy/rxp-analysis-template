@@ -15,3 +15,12 @@
   - Added PyYAML to runtime dependencies and setup defaults; updated uv.lock.
   - Verified skill metadata, 13 tests and 7 subtests, and a visually inspected
     transparent PNG rendered with Docker using paths containing spaces.
+* Explicit template initialization
+  - Accepted by the user and committed as f827fd3
+    (feat: add explicit template initialization).
+  - Added make init to update project name and description while preserving
+    dependencies, other settings, and TOML formatting with tomlkit.
+  - Preserved make setup behavior; updated setup documentation and uv.lock.
+  - Untracked five Python cache files while retaining local copies.
+  - Verified 18 unit tests, fresh-copy initialization and lockfile metadata,
+    repeat setup without prompts, and Git whitespace checks.
