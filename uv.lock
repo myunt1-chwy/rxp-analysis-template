@@ -905,6 +905,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
+    { name = "tomlkit" },
 ]
 
 [package.metadata]
@@ -923,7 +924,10 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = ">=9.1.1" }]
+dev = [
+    { name = "pytest", specifier = ">=9.1.1" },
+    { name = "tomlkit", specifier = ">=0.13.3" },
+]
 
 [[package]]
 name = "scipy"

@@ -3,19 +3,29 @@
 Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run:
 
 ```sh
-make setup
+make init
 ```
 
-On the first run, enter a project name and description, or press Enter to use
-the repository folder name and `Add your description here`. Names must start
+Enter a project name and description, or press Enter to use
+the repository folder name and the existing description (or
+`Add your description here` when absent). Names must start
 and end with a letter or digit and contain only letters, digits, `.`, `_`, or
 `-`. Ctrl-C or end-of-input cancels without writing project configuration.
 
-Setup creates `.venv` with Python 3.12 (uv may download Python), generates
-`pyproject.toml`, and synchronizes runtime and development dependencies.
-Subsequent runs preserve `pyproject.toml` and sync without prompting.
+`make init` creates `.venv` with Python 3.12 (uv may download Python) and
+synchronizes dependencies before prompting when configuration exists. It edits
+only the project name and description, preserving dependencies, other settings,
+and TOML formatting, then synchronizes again to refresh `uv.lock`. Explicitly
+running `make init` again prompts again. Cancellation leaves `pyproject.toml`
+unchanged; the preliminary synchronization may already have updated the
+environment and lockfile.
+
+For subsequent dependency synchronization, run `make setup`. It preserves
+existing `pyproject.toml` without prompting. If configuration is absent, either
+command prompts for metadata and generates it.
 The initial runtime dependencies are defined in `scripts/setup.py`; the
-development dependency group includes `pytest>=9.1.1`. After initialization, edit
+development dependency group includes `pytest>=9.1.1` and `tomlkit>=0.13.3`.
+After initialization, edit
 `pyproject.toml` to change either list and rerun `make setup`.
 An internet connection may be required to download Python and packages.
 If dependency resolution fails, the requested constraints remain unchanged;

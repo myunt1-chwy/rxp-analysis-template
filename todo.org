@@ -27,3 +27,13 @@
     produced a visually inspected transparent PNG using paths with spaces.
   - PyYAML resolved to 6.0.3; uv.lock updated. User accepted and approved commit.
   - Stop for review and commit approval; log completion after acceptance and commit.
+* DONE Add explicit template initialization and untrack Python caches
+  - Add make init with explicit metadata prompts, preserving TOML and dependencies.
+  - Keep make setup behavior; synchronize before and after explicit initialization.
+  - Add tomlkit through uv, update documentation, and test initialization behavior.
+  - Untrack Python caches while retaining local copies and existing ignore rules.
+  - Stop for review and commit approval; update log.org after acceptance and commit.
+  - Verified: 18 unit tests passed; fresh-copy make init refreshed project metadata
+    and uv.lock, and repeat make setup preserved configuration without prompting.
+  - Five tracked Python cache files removed from the index; local copies retained.
+  - Implementation verified and accepted; user approved committing the changes.

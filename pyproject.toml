@@ -18,4 +18,4 @@ dependencies = [
     "statsmodels>=0.15.0"
     ]
 [dependency-groups]
-dev = ["pytest>=9.1.1"]
+dev = ["pytest>=9.1.1", "tomlkit>=0.13.3"]

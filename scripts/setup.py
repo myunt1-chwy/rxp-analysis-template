@@ -1,5 +1,6 @@
 """Initialize project metadata once, then synchronize the project environment."""
 
+import argparse
 import json
 from pathlib import Path
 import re
@@ -21,7 +22,7 @@ RUNTIME_DEPENDENCIES = [
     "sqlparse>=0.6.0",
     "statsmodels>=0.15.0",
 ]
-DEVELOPMENT_DEPENDENCIES = ["pytest>=9.1.1"]
+DEVELOPMENT_DEPENDENCIES = ["pytest>=9.1.1", "tomlkit>=0.13.3"]
 
 
 def project_configuration(name: str, description: str) -> str:
@@ -38,13 +39,30 @@ def project_configuration(name: str, description: str) -> str:
     )
 
 
-def main() -> int:
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--init", action="store_true", help="Prompt for project metadata even when configuration exists.")
+    args = parser.parse_args(argv)
     if shutil.which("uv") is None:
         print("Error: install uv from https://docs.astral.sh/uv/getting-started/installation/", file=sys.stderr)
         return 1
 
     configuration = Path("pyproject.toml")
-    if not configuration.exists():
+    if args.init or not configuration.exists():
+        document = None
+        default_description = "Add your description here"
+        if configuration.exists():
+            import tomlkit
+
+            try:
+                document = tomlkit.parse(configuration.read_text(encoding="utf-8"))
+                project = document["project"]
+                default_description = project.get("description", default_description)
+                if not isinstance(default_description, str):
+                    raise ValueError("project.description must be a string")
+            except (ValueError, KeyError, TypeError) as error:
+                print(f"Cannot initialize project configuration: {error}", file=sys.stderr)
+                return 1
         default_name = Path.cwd().name
         try:
             while True:
@@ -52,12 +70,18 @@ def main() -> int:
                 if re.fullmatch(r"[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?", name):
                     break
                 print("Use letters, digits, dots, underscores, or hyphens; start and end with a letter or digit.")
-            description = input("Description [Add your description here]: ").strip() or "Add your description here"
+            description = input(f"Description [{default_description}]: ").strip() or default_description
         except (EOFError, KeyboardInterrupt):
             print("\nSetup cancelled; no project configuration was written.", file=sys.stderr)
             return 1
 
-        configuration.write_text(project_configuration(name, description), encoding="utf-8")
+        if document is None:
+            content = project_configuration(name, description)
+        else:
+            document["project"]["name"] = name
+            document["project"]["description"] = description
+            content = tomlkit.dumps(document)
+        configuration.write_text(content, encoding="utf-8")
 
     try:
         subprocess.run(["uv", "sync", "--python", "3.12", "--group", "dev"], check=True)
